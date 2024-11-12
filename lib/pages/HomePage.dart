@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gamify_app/data.dart';
+import 'package:gamify_app/widgets/ScrollableWidgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -86,6 +87,13 @@ class _HomePageState extends State<HomePage> {
           _topBarWidget(),
           SizedBox(height: _deviceHeight*0.13,),
           _featuredGamesInfoRowWidget(),
+          Padding(
+            padding:  EdgeInsets.symmetric(vertical: _deviceHeight*0.01),
+            child: ScrollableGameWidget(_deviceHeight*0.24, games, _deviceWidth, true),
+          ),
+          _featuredGamesBanner(),
+         // SizedBox(height: 5,),
+          ScrollableGameWidget(_deviceHeight*0.22, games2, _deviceWidth, false)
         ],
       ),
     );
@@ -158,6 +166,18 @@ class _HomePageState extends State<HomePage> {
             }).toList(),
           )
         ],
+      ),
+    );
+  }
+  Widget _featuredGamesBanner(){
+    return Container(
+      height: _deviceHeight*0.13,
+      width: _deviceWidth,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        image: DecorationImage(
+fit: BoxFit.cover,
+            image: NetworkImage(featuredGames[3].coverImage.url))
       ),
     );
   }
